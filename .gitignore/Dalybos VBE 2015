@@ -1,0 +1,43 @@
+/*Dvidešimt mokinių išsirikiuoja į eilę taip: kairėje stovi dešimt mergaičių, o dešinėje – dešimt
+berniukų. Kiekviena mergaitė rankose laiko po dubenėlį, kiekviename dubenėlyje yra po dešimt slyvų.
+Kai kurios mergaitės suvalgo po kelias slyvas.
+Kiekviena mergaitė perduoda dubenėlį dešinėje nuo jos esančiam mokiniui. Kiekvienas mokinys,
+gavęs dubenėlį, suvalgo vieną slyvą ir perduoda jį toliau į dešinę tol, kol slyvos baigiasi.
+Parašykite programą, kuri apskaičiuotų, kiek slyvų suvalgė kiekvienas mokinys.*/
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+int liko[20], suvalge[20]={0}, mergaites[10];
+void kiek();
+int main()
+{
+    ifstream in("U1.txt");
+    for(int i=0; i<10;i++)
+    {
+        in>>mergaites[i];
+    }
+    in.close();
+    kiek();
+    ofstream out("U1rez.txt");
+    for(int m=0;m<20;m++) out<<suvalge[m]<<" ";
+    out.close();
+    return 0;
+}
+
+void kiek()
+{
+      for(int j=0; j<10; j++)
+    {
+        liko[j]=10-mergaites[j];
+        suvalge[j]=mergaites[j];
+    }
+    for(int k=0; k<10; k++)
+    {
+      for(int p=0; p<liko[k];p++)
+        {
+            suvalge[p+k+1]++;
+        }
+    }
+}
